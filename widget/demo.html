@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo · Asistente de Punto de Fuga</title>
+  <style>
+    body { margin: 0; font-family: Georgia, serif; background: #f7f4ef; color: #222; }
+    main { max-width: 720px; margin: 0 auto; padding: 72px 20px; }
+    h1 { font-size: 2.2rem; line-height: 1.15; }
+    p { font-size: 1.1rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>¿Y si pudieras conocer el venue antes de visitarlo?</h1>
+    <p>Página de prueba del widget. Abre el chat con el botón de la esquina.</p>
+  </main>
+
+  <!-- Modo "mock": responde sin backend. Para probar con n8n, sustituye por la URL del webhook. -->
+  <script src="punto-de-fuga-chat.js" data-endpoint="mock" defer></script>
+</body>
+</html>
