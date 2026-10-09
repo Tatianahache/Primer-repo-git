@@ -9,7 +9,7 @@
  *   data-endpoint     URL del webhook (usa "mock" para probar sin backend)
  *   data-demo-url     enlace de "Agendar demo"
  *   data-privacy-url  enlace a la política de privacidad
- *   data-accent       color principal (botón, burbujas del usuario)   por defecto #B8E62E (verde lima)
+ *   data-accent       color principal (botón, burbujas del usuario)   por defecto #C6FF34 (verde lima)
  *   data-ink          color de la cabecera                            por defecto #14213D
  *   data-position     "right" (por defecto) o "left"
  *   data-title        título de la cabecera
@@ -31,7 +31,7 @@
     endpoint: attr('endpoint', ''),
     demoUrl: attr('demo-url', 'https://puntodefugavr.site.je/agendar-demo/'),
     privacyUrl: attr('privacy-url', ''),
-    accent: attr('accent', '#B8E62E'),
+    accent: attr('accent', '#C6FF34'),
     ink: attr('ink', '#14213D'),
     position: attr('position', 'right') === 'left' ? 'left' : 'right',
     title: attr('title', 'Asistente de Punto de Fuga'),
