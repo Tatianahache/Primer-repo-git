@@ -15,6 +15,9 @@
  *   data-position     "right" (por defecto) o "left"
  *   data-title        título de la cabecera
  *   data-auto-open    "true" para abrirlo al cargar
+ *   data-teaser       "false" para quitar el aviso emergente que sale a los 6 segundos
+ *   data-bottom       separación con el borde inferior en px (por defecto 20)
+ *   data-side         separación con el borde lateral en px (por defecto 20)
  */
 (function () {
   'use strict';
@@ -36,7 +39,10 @@
     ink: attr('ink', '#14213D'),
     position: attr('position', 'right') === 'left' ? 'left' : 'right',
     title: attr('title', 'Asistente de Punto de Fuga'),
-    autoOpen: attr('auto-open', 'false') === 'true'
+    autoOpen: attr('auto-open', 'false') === 'true',
+    teaser: attr('teaser', 'true') !== 'false',
+    bottom: Math.max(0, parseInt(attr('bottom', '20'), 10) || 0),
+    side: Math.max(0, parseInt(attr('side', '20'), 10) || 0)
   };
 
   // Texto legible sobre el color de marca: oscuro si el fondo es claro (p. ej. verde lima), blanco si es oscuro.
@@ -194,7 +200,7 @@
     ':host{all:initial}',
     '*{box-sizing:border-box}',
     '.root{--accent:' + cfg.accent + ';--on-accent:' + cfg.onAccent + ';--ink:' + cfg.ink + ';--bg:#ffffff;--surface:#f4f5f8;--text:#1b1f2a;--muted:#667085;--border:#e3e6ec;',
-    'position:fixed;bottom:20px;' + cfg.position + ':20px;z-index:2147483000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.45;color:var(--text)}',
+    'position:fixed;bottom:' + cfg.bottom + 'px;' + cfg.position + ':' + cfg.side + 'px;z-index:2147483000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.45;color:var(--text)}',
     '@media (prefers-color-scheme:dark){.root{--bg:#161a24;--surface:#222736;--text:#eef0f5;--muted:#9aa3b5;--border:#2d3345}}',
     'button{font:inherit;color:inherit;cursor:pointer}',
     '.launcher{width:60px;height:60px;border-radius:50%;border:0;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(20,33,61,.35);transition:transform .15s ease}',
@@ -556,7 +562,7 @@
     restore();
     if (cfg.autoOpen) {
       openPanel();
-    } else if (!read(session, TEASER_KEY)) {
+    } else if (cfg.teaser && !read(session, TEASER_KEY)) {
       setTimeout(function () {
         if (panel.classList.contains('hidden')) teaser.classList.remove('hidden');
       }, 6000);
